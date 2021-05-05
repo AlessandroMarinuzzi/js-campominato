@@ -13,13 +13,38 @@
 function randomNumbers (min, max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+// Let's create difficulty levels to pick limits from and change max attempts number in accordance to the choice.
+var level = parseInt(prompt("Choose Difficulty Level: [0/1/2]"));
+var limit;
+switch (level) {
+
+    case 1:
+        // 80 numbers
+
+        //number = randomNumbers(1, 80);
+        limit = 80;
+        break;
+
+    case 2:
+        // 50 numbers
+        //number = randomNumbers(1, 50);
+        limit = 50;
+        break;
+
+    default:
+        // 100 numbers
+        //number = randomNumbers(1, 100);
+        limit = 100;
+        break;
+}
+
 // Let's create an array to contain the 16 random numbers
 var bombs = [];
 
 // Let's use our function in a While cycle to repeat the process till we get 16 numbers. 
 // Numbers must be all different.
 while (bombs.length < 16){
-    var pcNumber = randomNumbers(1, 100)
+    var pcNumber = randomNumbers(1, limit)
     // Let's verify all numbers in the array are different and if so push them into the array.
     if (!bombs.includes(pcNumber)){
         bombs.push(pcNumber)
@@ -33,17 +58,17 @@ console.log(bombs);
 var userArray = [];
 
 // Let's create a FOR Cycle to repeat the request.
-for (i = 1; i <= (100 - 97); i ++){
-    var userNumber = parseInt(prompt("Insert a number between 1 and 100."))
+for (i = 1; i <= (limit - 97); i ++){
+    var userNumber = parseInt(prompt("Insert a number between 1 and " + limit + "."))
     
     // We now need to verify through a WHILE cycle if the number inserted respects all prompt criterias.
-    while (userNumber < 1 || userNumber > 100 || isNaN(userNumber)){
+    while (userNumber < 1 || userNumber > limit || isNaN(userNumber)){
         alert("You must insert a valid number to play!")
-        userNumber = parseInt(prompt("Insert a number between 1 and 100."))
+        userNumber = parseInt(prompt("Insert a number between 1 and " + limit + "."))
     }
 
     // We also need to verify if the numbers inserted match the numbers contained in the bombs array.
-    if (!bombs.includes(userNumber)){
+    if (!userArray.includes(userNumber)){
         if(bombs.includes(userNumber)){
             alert("You picked a bomb! You Lost!");
             break;
@@ -57,5 +82,8 @@ for (i = 1; i <= (100 - 97); i ++){
     }
 
 }
-console.log(i);
 
+
+if(userArray.length === (limit - 97)) {
+    alert("You Won! Your Score:" + userArray.length);
+}
