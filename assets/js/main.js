@@ -11,7 +11,20 @@
 // Computer must generate 16 random numbers between 1 and 100.
 // Let's first create a function to generate a random number.
 function randomNumbers (min, max){
-    return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 console.log(randomNumbers(1, 100));
+// Let's create an array to contain the 16 random numbers
+var bombs = [];
 
+// Let's use our function in a While cycle to repeat the process till we get 16 numbers. 
+// Numbers must be all different.
+while (bombs.length < 16){
+    var pcNumber = randomNumbers(1, 100)
+
+    if (!bombs.includes(pcNumber)){
+        bombs.push(pcNumber)
+    }
+
+}
+console.log(bombs);
