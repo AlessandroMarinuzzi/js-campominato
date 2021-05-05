@@ -37,7 +37,7 @@ switch (level) {
         limit = 100;
         break;
 }
-
+console.log(limit);
 // Let's create an array to contain the 16 random numbers
 var bombs = [];
 
@@ -58,7 +58,7 @@ console.log(bombs);
 var userArray = [];
 
 // Let's create a FOR Cycle to repeat the request.
-for (i = 1; i <= (limit - 97); i ++){
+for (i = 1; i <= (limit - 16); i ++){
     var userNumber = parseInt(prompt("Insert a number between 1 and " + limit + "."))
     
     // We now need to verify through a WHILE cycle if the number inserted respects all prompt criterias.
@@ -70,7 +70,7 @@ for (i = 1; i <= (limit - 97); i ++){
     // We also need to verify if the numbers inserted match the numbers contained in the bombs array.
     if (!userArray.includes(userNumber)){
         if(bombs.includes(userNumber)){
-            alert("You picked a bomb! You Lost!");
+            alert("You picked a bomb! You Lost! Your Score is:" + userArray.length);
             break;
         }
         userArray.push(userNumber);
@@ -84,6 +84,6 @@ for (i = 1; i <= (limit - 97); i ++){
 }
 
 
-if(userArray.length === (limit - 97)) {
+if(userArray.length === (limit - 16)) {
     alert("You Won! Your Score:" + userArray.length);
 }
